@@ -5,6 +5,7 @@ import { d2CrudPlus } from 'd2-crud-plus'
 import { D2pAreaSelector, D2pFileUploader, D2pIconSelector, D2pTreeSelector, D2pFullEditor, D2pUploader, D2pDemoExtend } from 'd2p-extends' // 源码方式引入，上传组件支持懒加载
 // http请求
 import { request } from '@/api/service'
+import { getCrudOption } from '@/config/d2-curd'
 
 /**
  // vxe0
@@ -35,43 +36,7 @@ Vue.use(d2CrudPlus, {
     })
   },
   commonOption () { // 公共配置
-    return {
-      format: {
-        page: { // page接口返回的数据结构配置，
-          request: {
-            current: 'current',
-            size: 'size'
-          },
-          response: {
-            current: 'current', // 当前页码 ret.data.current
-            size: 'size', // 当前页码 ret.data.current
-            // size: (data) => { return data.size }, // 每页条数，ret.data.size, 你也可以配置一个方法，自定义返回
-            total: 'total', // 总记录数 ret.data.total
-            records: 'records' // 列表数组 ret.data.records
-          }
-        }
-      },
-      pageOptions: {
-        compact: true
-      },
-      options: {
-        size: 'small'
-      },
-      formOptions: {
-        nullToBlankStr: true, // 提交修改表单时，将undefinded的数据修改为空字符串''，可以解决无法清空字段的问题
-        defaultSpan: 12 // 默认的表单 span
-      },
-      viewOptions: {
-        disabled: false,
-        componentType: 'form' // 【form,row】 表单组件 或 行组件展示
-      },
-      rowHandle: {
-        width: 260,
-        edit: {
-          type: 'primary'
-        }
-      }
-    }
+    return getCrudOption()
   }
 })
 

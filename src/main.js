@@ -14,7 +14,7 @@ import { frameInRoutes } from '@/router/routes'
 
 // d2-crud-plus 安装与初始化
 import './install'
-import './business/modules/permission'
+import './permission'
 // 核心插件
 Vue.use(d2Admin)
 
@@ -49,9 +49,7 @@ new Vue({
       handler (matched) {
         if (matched.length > 0) {
           const _side = menuHeader.filter(menu => menu.path === matched[0].path)
-          if (_side.length > 0) {
-            this.$store.commit('d2admin/menu/asideSet', _side[0].children)
-          }
+          this.$store.commit('d2admin/menu/asideSet', _side.length > 0 ? _side[0].children : [])
         }
       },
       immediate: true

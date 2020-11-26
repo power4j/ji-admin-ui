@@ -6,6 +6,7 @@ export default ({ service, request, serviceForMock, requestForMock, mock, faker,
   SYS_USER_LOGIN (data = {}) {
     // 接口请求
     return request({
+      headers: { 'x-api-token': '' },
       url: '/login',
       method: 'post',
       data

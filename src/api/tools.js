@@ -67,14 +67,19 @@ export function errorLog (error) {
     util.log.danger('>>>>>> Error >>>>>>')
     console.log(error)
   }
-  // 显示提示
+}
+/**
+ * @description 显示错误信息
+ * @param {String} msg 错误信息
+ * @param {Number} duration 持续时间,毫秒
+ */
+export function errorMsg (msg, duration = 5000) {
   Message({
-    message: error.message,
+    message: msg,
     type: 'error',
-    duration: 5 * 1000
+    duration: duration
   })
 }
-
 /**
  * @description 创建一个错误
  * @param {String} msg 错误信息
