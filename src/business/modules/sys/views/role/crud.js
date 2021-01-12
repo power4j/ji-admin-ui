@@ -102,14 +102,14 @@ export const crudOptions = (vm) => {
       {
         title: '创建时间',
         key: 'createAt',
-        sortable: 'create_at',
+        sortable: 'createAt',
         type: 'datetime',
         form: { disabled: true }
       },
       {
         title: '更新时间',
         key: 'updateAt',
-        sortable: 'update_at',
+        sortable: 'updateAt',
         type: 'datetime',
         form: { disabled: true } // 表单配置
       }

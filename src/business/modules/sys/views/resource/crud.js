@@ -115,7 +115,8 @@ export const crudOptions = (vm) => {
           component: {
             props: {
               placeholder: 'permission/resource'
-            }
+            },
+            span: 24
           }
         },
         rules: [{ max: 240, message: '长度 240 个字符', trigger: 'blur' }]
@@ -125,9 +126,15 @@ export const crudOptions = (vm) => {
         key: 'component',
         sortable: true,
         form: {
-          helper: '最顶层的菜单必须配置为layoutHeaderAside。子菜单配置组件路径，例如/permission/views/resource',
-          rules: [{ max: 240, message: '长度 240 个字符', trigger: 'blur' }]
+          component: {
+            props: {
+              placeholder: 'permission/resource'
+            },
+            span: 24
+          },
+          helper: '最顶层的菜单必须配置为layoutHeaderAside。子菜单配置组件路径，例如/permission/views/resource'
         },
+        rules: [{ max: 240, message: '长度 240 个字符', trigger: 'blur' }],
         width: 180
       },
       {

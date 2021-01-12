@@ -58,7 +58,6 @@ function createService () {
       }
     },
     error => {
-      console.log(JSON.stringify(error))
       const status = get(error, 'response.status')
       switch (status) {
         case 400: error.message = '400 - 请求错误'; break

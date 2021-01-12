@@ -11,13 +11,17 @@ export default {
      * @param {Object} context
      * @param {Object} payload username {String} 用户账号
      * @param {Object} payload password {String} 密码
+     * @param {Object} payload reqToken {String}
+     * @param {Object} payload code {String}
      * @param {Object} payload route {Object} 登录成功后定向的路由对象 任何 vue-router 支持的格式
      */
     async login ({ dispatch }, {
       username = '',
-      password = ''
+      password = '',
+      reqToken = '',
+      code = ''
     } = {}) {
-      let res = await api.SYS_USER_LOGIN({ username, password })
+      let res = await api.SYS_USER_LOGIN({ username, password, reqToken, code })
       // 设置 cookie 一定要存 uuid 和 token 两个 cookie
       // 整个系统依赖这两个数据进行校验和存储
       // uuid 是用户身份唯一标识 用户注册的时候确定 并且不可改变 不可重复

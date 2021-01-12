@@ -12,7 +12,7 @@ export function getPage (query) {
 
 export function addObj (obj) {
   return request({
-    url: prefix,
+    url: prefix + '/users',
     method: 'post',
     data: obj
   })

@@ -4,12 +4,14 @@ export default ({ service, request, serviceForMock, requestForMock, mock, faker,
    * @param {Object} data 登录携带的信息
    */
   SYS_USER_LOGIN (data = {}) {
-    // 接口请求
+    const param = (({ reqToken, code }) => ({ reqToken, code }))(data)
+    const body = (({ username, password }) => ({ username, password }))(data)
     return request({
       headers: { 'x-api-token': '' },
       url: '/login',
       method: 'post',
-      data
+      data: body,
+      params: param
     })
   }
 })

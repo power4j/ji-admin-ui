@@ -159,6 +159,14 @@ export const crudOptions = (vm) => {
         form: { disabled: true }, // 添加和编辑表单禁用
         view: { disabled: true }, // 查看表单不禁用
         disabled: true // 是否禁用列
+      },
+      {
+        title: '备注',
+        key: 'remarks',
+        form: {
+          rules: [{ min: 0, max: 20, message: '长度 20 个字符', trigger: 'blur' }]
+        },
+        show: false
       }
     ]
   }
