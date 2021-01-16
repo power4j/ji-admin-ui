@@ -73,6 +73,7 @@ export default {
       return resApi.getObj(row.id)
     },
     addAfter (row) {
+      console.log(JSON.stringify(row))
       this.doAfterRowChange(row)
       this.reloadNode(row.parentId)
     },
@@ -106,18 +107,20 @@ export default {
     },
     reloadNode (id) {
       // 局部刷新,触发加载节点
-      const { lazyTreeNodeMap, treeData } = this.getD2Crud().$refs.elTable.store.states
-      this.$set(lazyTreeNodeMap, id, [])
+      // const { lazyTreeNodeMap, treeData } = this.getD2Crud().$refs.elTable.store.states
+      // this.$set(lazyTreeNodeMap, id, [])
 
-      this.loadChildren({ id: id }, null, data => {
+      resApi.getChildren(id).then(ret => {
+        this.$set(this.getD2Crud().$refs.elTable.store.states.lazyTreeNodeMap, id, ret.data)
+        /* this.$set(this.getD2Crud().$refs.elTable.store.states.lazyTreeNodeMap, id, ret.data)
         this.$set(treeData[id], 'loading', false)
         this.$set(treeData[id], 'loaded', true)
         this.$set(treeData[id], 'expanded', true)
-        if (data.length) {
-          this.$set(lazyTreeNodeMap, id, data)
+        if (ret.data.length) {
+          this.$set(lazyTreeNodeMap, id, ret.data)
         } else {
           treeData[id].hasChildren = false
-        }
+        } */
       })
     }
 
