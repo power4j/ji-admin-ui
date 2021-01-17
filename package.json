@@ -1,5 +1,5 @@
 {
-  "name": "flygon-amdin",
+  "name": "ji-amdin",
   "version": "0.2.1",
   "scripts": {
     "serve": "vue-cli-service serve --open",
