@@ -94,7 +94,7 @@ export const crudOptions = (vm) => {
         title: '姓名',
         key: 'name',
         form: {
-          rules: [{ max: 20, message: '长度 20 个字符', trigger: 'blur' }]
+          rules: [{ required: true, message: '此项必填' }, { max: 20, message: '长度 20 个字符', trigger: 'blur' }]
         }
       },
       {
@@ -102,14 +102,14 @@ export const crudOptions = (vm) => {
         key: 'mobilePhone',
         width: 150,
         form: {
-          rules: [{ required: true, message: '请输入手机号' }, { validator: mobileValidator, message: '手机号不正确' }]
+          rules: [{ validator: mobileValidator, message: '手机号不正确' }]
         }
       },
       {
         title: '邮箱',
         key: 'mail',
         form: { // 表单配置
-          rules: [{ required: false, message: '请输入邮箱' }, { min: 6, max: 20, message: '长度在 6 到 20 个字符' }, { type: 'email', message: '请输入正确的邮箱' }]
+          rules: [{ min: 6, max: 20, message: '长度在 6 到 20 个字符' }, { type: 'email', message: '请输入正确的邮箱' }]
         },
         sortable: 'custom'
       },

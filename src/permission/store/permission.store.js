@@ -157,7 +157,7 @@ const actions = {
       commit('d2admin/page/init', frameInRoutes.concat(accessedRoutes), { root: true })
 
       // 处理菜单
-      const menus = supplementPath(formatMenu(menuTree)) // 根据后台获取的资源树，构建菜单
+      const menus = supplementPath(formatMenu(menuTree) || []) // 根据后台获取的资源树，构建菜单
       menuHeader.splice(0, menuHeader.length)
       menuHeader.push(...StaticMenuHeader) // 重新构建菜单列表
       menuHeader.push(...menus) // 将动态菜单放进去
