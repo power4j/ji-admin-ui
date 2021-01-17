@@ -32,6 +32,7 @@
                 label-position="top"
                 :rules="rules"
                 :model="formLogin"
+                @keyup.enter.native="submit"
                 size="default">
                 <el-form-item prop="username">
                   <el-input
@@ -183,9 +184,6 @@ export default {
               // 重定向对象不存在则返回顶层路径
               this.$router.replace(this.$route.query.redirect || '/')
             }).catch(() => this.refreshCode())
-        } else {
-          // 登录表单校验失败
-          this.$message.error('表单校验失败，请检查')
         }
       })
     }
