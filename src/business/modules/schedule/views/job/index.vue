@@ -70,13 +70,31 @@ export default {
       return jobApi.getObj(row.id)
     },
     pauseJob (event) {
-      jobApi.pauseJob(event.row.id)
+      this.$confirm('是否继续操作?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        jobApi.pauseJob(event.row.id).then(() => this.doRefresh())
+      })
     },
     resumeJob (event) {
-      jobApi.resumeJob(event.row.id)
+      this.$confirm('是否继续操作?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        jobApi.resumeJob(event.row.id).then(() => this.doRefresh())
+      })
     },
     scheduleNow (event) {
-      jobApi.scheduleNow(event.row.id)
+      this.$confirm('是否继续操作?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        jobApi.scheduleNow(event.row.id).then(() => this.doRefresh())
+      })
     }
   }
 }
