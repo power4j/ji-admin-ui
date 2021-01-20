@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 import util from '@/libs/util'
-import cronEnLocale from 'vue-cron-generator/src/locale/en-US'
-import cronZhLocale from 'vue-cron-generator/src/locale/zh-CN'
 
 Vue.use(VueI18n)
 
@@ -20,12 +18,6 @@ function loadLocaleMessages () {
       }
     }
   }
-  messages.en = {
-    ...messages.en, ...cronEnLocale
-  }
-  messages['zh-chs'] = {
-    ...messages['zh-chs'], ...cronZhLocale
-  }
   return messages
 }
 
@@ -39,7 +31,6 @@ Vue.prototype.$languages = Object.keys(messages).map(langlage => ({
 const i18n = new VueI18n({
   locale: util.cookies.get('lang') || process.env.VUE_APP_I18N_LOCALE,
   fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE,
-  silentFallbackWarn: true,
   messages
 })
 

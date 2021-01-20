@@ -123,7 +123,8 @@ export const crudOptions = (vm) => {
         title: '调度计划',
         key: 'cron',
         form: {
-          component: { name: 'cron-input' },
+          // component: { name: 'cron-input' },
+          slot: true,
           rules: [{ required: true, message: '请填写调度计划' }, { max: 40, message: '长度 40 个字符', trigger: 'blur' }]
         },
         width: 200

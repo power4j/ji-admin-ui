@@ -1,6 +1,5 @@
 import Vue from 'vue'
 // import d2Crud from '@d2-project/d2-crud'
-import CronInput from 'vue-cron-generator/src/components/cron-input'
 import d2CrudX from 'd2-crud-x'
 import { d2CrudPlus } from 'd2-crud-plus'
 import { D2pAreaSelector, D2pFileUploader, D2pIconSelector, D2pTreeSelector, D2pFullEditor, D2pUploader, D2pDemoExtend } from 'd2p-extends' // 源码方式引入，上传组件支持懒加载
@@ -15,8 +14,6 @@ import VXETable from 'vxe-table'
 import 'vxe-table/lib/index.css'
 Vue.use(VXETable)
 **/
-
-Vue.component('cron-input', CronInput)
 
 // 按如下重命名引入可与官方版共存，index.vue中标签用<d2-crud-x />使用加强版
 // 不传name，则d2CrudX的标签仍为<d2-crud>,不可与官方版共存
@@ -117,10 +114,3 @@ Vue.use(D2pUploader, {
 // 修改官方字段类型
 const selectType = d2CrudPlus.util.columnResolve.getType('select')
 selectType.component.props.color = 'auto' // 修改官方的字段类型，设置为支持自动染色
-
-d2CrudPlus.util.columnResolve.addTypes({
-  'cron-picker': {
-    form: { component: { name: 'cron-input' } },
-    component: { name: 'cron-input' }
-  }
-})

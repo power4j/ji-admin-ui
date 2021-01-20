@@ -21,7 +21,14 @@
                           @refresh="doRefresh()"
                           @columns-filter-changed="handleColumnsFilterChanged"/>
           </div>
-
+          <template slot="cronFormSlot" slot-scope="scope">
+            <div class="cron">
+              <el-popover v-model="cronPopover">
+                <cron @change="handleCronChange" @close="cronPopover=false" i18n="cn"></cron>
+                <el-input slot="reference" @click="cronPopover=true" v-model="scope.form.cron" placeholder="请输入定时策略"></el-input>
+              </el-popover>
+            </div>
+          </template>
         </d2-crud-x>
     </d2-container>
 </template>
@@ -29,15 +36,21 @@
 <script>
 import { crudOptions } from './crud'
 import { d2CrudPlus } from 'd2-crud-plus'
+import { cron } from 'vue-cron'
 import * as jobApi from '../../api/job'
 export default {
   name: 'Job',
   mixins: [d2CrudPlus.crud],
+  components: { cron },
   data () {
     return {
+      cronPopover: false
     }
   },
   methods: {
+    handleCronChange (text) {
+      this.getEditForm().cron = text
+    },
     getCrudOptions () {
       return crudOptions(this)
     },
