@@ -21,13 +21,12 @@ export const crudOptions = (vm) => {
       height: '100%' // 表格高度100%, 使用toolbar必须设置
     },
     rowHandle: {
-      // columnHeader: '操作',
       width: 180,
       view: {
         thin: true,
         text: null,
         disabled () {
-          return false// !vm.hasPermissions('sys:user:view')
+          return !vm.hasPermissions('sys:user:view')
         }
       },
       edit: {

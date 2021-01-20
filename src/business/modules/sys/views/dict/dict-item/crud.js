@@ -67,14 +67,14 @@ export const crudOptions = (vm) => {
         title: '展示标签',
         key: 'label',
         form: {
-          rules: [{ required: true, message: '此项必填' }, { max: 40, message: '长度 20 个字符' }]
+          rules: [{ required: true, message: '此项必填' }, { max: 240, message: '长度 240 个字符' }]
         }
       },
       {
         title: '选项值',
         key: 'value',
         form: {
-          rules: [{ required: true, message: '此项必填' }, { max: 40, message: '长度 240 个字符' }, { validator: validateDictValue }]
+          rules: [{ required: true, message: '此项必填' }, { max: 240, message: '长度 240 个字符' }, { validator: validateDictValue }]
         }
       },
       {
