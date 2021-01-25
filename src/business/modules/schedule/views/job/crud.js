@@ -87,7 +87,7 @@ export const crudOptions = (vm) => {
         title: '任务Bean',
         key: 'taskBean',
         form: {
-          rules: [{ required: true, message: '请填写任务Bean' }, { max: 240, message: '长度 240 个字符', trigger: 'blur' }]
+          rules: [{ required: true, message: '此项必填' }, { max: 240, message: '长度 240 个字符', trigger: 'blur' }]
         },
         width: 270
       },
@@ -98,7 +98,7 @@ export const crudOptions = (vm) => {
           disabled: false
         },
         form: {
-          rules: [{ max: 20, message: '长度 20 个字符', trigger: 'blur' }]
+          rules: [{ required: true, message: '此项必填' }, { max: 20, message: '长度 20 个字符', trigger: 'blur' }]
         },
         width: 150
       },
@@ -123,11 +123,10 @@ export const crudOptions = (vm) => {
         title: '调度计划',
         key: 'cron',
         form: {
-          // component: { name: 'cron-input' },
           slot: true,
-          rules: [{ required: true, message: '请填写调度计划' }, { max: 40, message: '长度 40 个字符', trigger: 'blur' }]
+          rules: [{ required: true, message: '此项必填' }, { max: 40, message: '长度 40 个字符', trigger: 'blur' }]
         },
-        width: 200
+        width: 120
       },
       {
         title: 'MisFire策略',
@@ -146,9 +145,17 @@ export const crudOptions = (vm) => {
         }
       },
       {
-        title: '失败重试',
+        title: '故障转移',
         key: 'failRecover',
-        type: 'dict-switch', // switch包装组件，支持dict，并且单元格使用tag展示
+        type: 'select',
+        dict: { data: [{ value: true, label: '开启' }, { value: false, label: '关闭' }] },
+        align: 'center',
+        width: 100
+      },
+      {
+        title: '失败重试',
+        key: 'errorRetry',
+        type: 'select',
         dict: { data: [{ value: true, label: '开启' }, { value: false, label: '关闭' }] },
         align: 'center',
         width: 100
@@ -169,39 +176,39 @@ export const crudOptions = (vm) => {
         show: false
       },
       {
-        title: '备注',
-        key: 'remarks',
+        title: '任务说明',
+        key: 'shortDescription',
         form: {
-          rules: [{ min: 0, max: 20, message: '长度 20 个字符', trigger: 'blur' }]
+          rules: [{ required: true, message: '此项必填' }, { min: 0, max: 20, message: '长度 20 个字符', trigger: 'blur' }]
         },
         show: false
       },
       {
         title: '创建时间',
         key: 'createAt',
-        type: 'datetime',
-        form: { disabled: true }, // 表单配置
+        form: { disabled: true },
         sortable: 'custom',
         show: false
       },
       {
         title: '创建者',
         key: 'createBy',
+        form: { disabled: true },
         align: 'center',
         width: 100
       },
       {
         title: '修改时间',
         key: 'updateAt',
-        type: 'datetime',
         width: 100,
-        form: { disabled: true }, // 表单配置
+        form: { disabled: true },
         sortable: 'custom',
         show: false
       },
       {
         title: '修改者',
         key: 'updateBy',
+        form: { disabled: true },
         align: 'center',
         width: 100
       }
