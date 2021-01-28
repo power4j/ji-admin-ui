@@ -1,5 +1,5 @@
 import { mobileValidator } from 'el-phone-number-input'
-import { dict as dictApi } from '../../api/dict'
+import { roDict as dictApi } from '../../api/dict'
 import * as userApi from '../../api/user'
 
 export const crudOptions = (vm) => {
@@ -122,7 +122,7 @@ export const crudOptions = (vm) => {
         dict: {
           url: 'sys_user_status',
           getData: (url, dict) => {
-            return dictApi.getItemList('sys_user_status').then(ret => { return ret.data })
+            return dictApi.getItemList('status_flags').then(ret => { return ret.data })
           }
         },
         form: {

@@ -1,4 +1,4 @@
-import { dict as dictApi } from '../../api/dict'
+import { roDict as dictApi } from '../../api/dict'
 import * as resApi from '../../api/resource'
 
 export const crudOptions = (vm) => {
@@ -150,9 +150,9 @@ export const crudOptions = (vm) => {
         align: 'center',
         width: 180,
         dict: {
-          url: 'sys_menu_type',
+          url: 'sys_resource_type',
           getData: (url, dict) => {
-            return dictApi.getItemList('sys_menu_type').then(ret => { return ret.data })
+            return dictApi.getItemList('sys_resource_type').then(ret => { return ret.data })
           }
         },
         form: {

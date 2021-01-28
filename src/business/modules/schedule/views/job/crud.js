@@ -1,4 +1,4 @@
-import { dict as dictApi } from '../../../sys/api/dict'
+import { roDict as dictApi } from '../../../sys/api/dict'
 
 export const crudOptions = (vm) => {
   return {
@@ -110,9 +110,9 @@ export const crudOptions = (vm) => {
         width: 100,
         search: { disabled: false },
         dict: {
-          url: 'sys_job_status',
+          url: 'schedule_status',
           getData: (url, dict) => {
-            return dictApi.getItemList('sys_job_status').then(ret => { return ret.data })
+            return dictApi.getItemList('schedule_status').then(ret => { return ret.data })
           }
         },
         form: {
@@ -134,9 +134,9 @@ export const crudOptions = (vm) => {
         type: 'select',
         align: 'center',
         dict: {
-          url: 'sys_job_mf_policy',
+          url: 'mis_fire_policy',
           getData: (url, dict) => {
-            return dictApi.getItemList('sys_job_mf_policy').then(ret => { return ret.data })
+            return dictApi.getItemList('mis_fire_policy').then(ret => { return ret.data })
           }
         },
         form: {

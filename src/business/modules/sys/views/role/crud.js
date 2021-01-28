@@ -1,4 +1,4 @@
-import { dict as dictApi } from '../../api/dict'
+import { roDict as dictApi } from '../../api/dict'
 import * as roleApi from '../../api/role'
 
 export const crudOptions = (vm) => {
@@ -90,9 +90,9 @@ export const crudOptions = (vm) => {
         width: 100,
         search: { disabled: false },
         dict: {
-          url: 'sys_role_status',
+          url: 'status_flags',
           getData: (url, dict) => {
-            return dictApi.getItemList('sys_role_status').then(ret => { return ret.data })
+            return dictApi.getItemList('status_flags').then(ret => { return ret.data })
           }
         },
         form: {

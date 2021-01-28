@@ -1,5 +1,5 @@
 import * as roleApi from '../../api/role'
-import { dict as dictApi } from '../../api/dict'
+import { roDict as dictApi } from '../../api/dict'
 export const crudOptions = (vm) => {
   const validateRoleGrant = (rule, value, callback) => {
     if (value) {
