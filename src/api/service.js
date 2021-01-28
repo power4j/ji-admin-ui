@@ -79,8 +79,6 @@ function createService () {
       }
       if (error.code === 'ECONNABORTED') {
         errorMsg('请求失败,请检查网络', 10000)
-      } else {
-        errorMsg(error.message)
       }
       errorLog(error)
       if (status === 401) {
@@ -91,6 +89,8 @@ function createService () {
         }).then(() => {
           store.dispatch('d2admin/account/logout', { confirm: false }).then(() => {})
         })
+      } else {
+        errorMsg(error.message)
       }
       return Promise.reject(error)
     }
