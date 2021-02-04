@@ -63,7 +63,7 @@ export const crudOptions = (vm) => {
         },
         {
           thin: true,
-          text: '立即调度',
+          text: '手动执行',
           type: 'success',
           size: 'mini',
           emit: 'scheduleNow',

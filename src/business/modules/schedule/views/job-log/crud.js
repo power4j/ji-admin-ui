@@ -78,6 +78,11 @@ export const crudOptions = (vm) => {
         width: 100
       },
       {
+        title: '触发源',
+        key: 'fireBy',
+        width: 80
+      },
+      {
         title: '异常',
         key: 'ex',
         form: { disabled: true },
