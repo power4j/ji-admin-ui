@@ -1,6 +1,6 @@
 {
   "name": "ji-amdin",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "start": "npm run serve",
