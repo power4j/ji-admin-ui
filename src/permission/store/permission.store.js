@@ -1,5 +1,6 @@
 import constantRoutes, { frameInRoutes } from '@/router/routes'
 import layoutHeaderAside from '@/layout/header-aside'
+import frameContext from '@/views/system/frame-context'
 import { menuHeader } from '@/menu'
 import router from '@/router'
 import { uniqueId } from 'lodash'
@@ -26,6 +27,11 @@ function isEmpty (value) {
   }
   return false
 }
+
+function isURL (s) {
+  return /^http[s]?:\/\/.*/.test(s)
+}
+
 /**
  * 构建路由列表
  * menuType 1=menu 2=btn 3=route
@@ -43,6 +49,9 @@ function formatRouter (parent, list) {
       let component = null
       if (item.component === 'layoutHeaderAside') {
         component = layoutHeaderAside
+      } else if (isURL(item.component)) {
+        // FIXME: refactor menu
+        component = frameContext
       } else {
         component = () => import('@/business/modules' + item.component)
       }
@@ -56,7 +65,8 @@ function formatRouter (parent, list) {
         meta: {
           title: item.title,
           auth: true,
-          cache: true
+          cache: true,
+          frameUrl: component === frameContext ? item.component : null
         }
       }
       children.push(newRouter)
