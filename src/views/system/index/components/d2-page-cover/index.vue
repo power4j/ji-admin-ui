@@ -1,25 +1,37 @@
 <template>
   <div class="d2-page-cover">
-    <p class="d2-page-cover__title" @click="$open('https://github.com/greper/d2-crud-plus')">
-      <d2-icon-svg class="logo" name="d2-admin"/> d2-crud-plus {{$version}}</p>
-    <p class="d2-page-cover__sub-title">d2-crud加强版，简化d2-crud配置，定义字段类型，快速开发crud功能</p>
+    <p class="d2-page-cover__title" @click="$open('https://github.com/power4j/ji-boot')">
+      <d2-icon-svg class="logo" name="d2-admin"/> JI-ADMIN-UI {{$version}}</p>
+    <p class="d2-page-cover__sub-title">这是一个后台管理系统系统的UI部分，基于d2-crud-plus、d2-admin </p>
     <div class="exampleBox">
+      <div class="img-box">
+        <el-carousel height="300px">
+          <el-carousel-item v-for="item in banners" :key="item.id">
+            <img :src="item" alt=""  width="auto" height="300" style="margin: 0 auto;">
+          </el-carousel-item>
+        </el-carousel>
+      </div>
+
 <!--      <div class="left">-->
 <!--        <d2-highlight :code="helper.crud" lang="javascript"/>-->
 <!--      </div>-->
 <!--      <div class="icon">-->
 <!--        <i class="el-icon-right"></i>-->
 <!--      </div>-->
+<!--
       <div class="right">
         <img src="./image/gif.webp">
       </div>
+
+-->
+
     </div>
 
-    <p class="d2-page-cover__build-time">FINAL BUILD TIME {{$buildTime}}</p>
+    <p class="d2-page-cover__build-time">构建时间 {{$buildTime}}</p>
     <slot name="footer"/>
     <div style="">
       <div class="toStar">喜欢就去star一下吧 <i class="fa fa-hand-o-right"></i></div>
-      <a target="blank" href="https://github.com/greper/d2-crud-plus" >
+      <a target="blank" href="https://github.com/power4j/ji-boot" >
         <img
           style="position: absolute; top: 0; right: 0; border: 0;vertical-align:top; width: 150px;"
           src="./image/darkblue@2x.png"
@@ -34,12 +46,22 @@ import helper from './helper'
 export default {
   data () {
     return {
-      helper: helper
+      helper: helper,
+      banners: [
+        'http://picdn.eta.pub/img/ding-err-notify.png',
+        'http://picdn.eta.pub/img/wx-err-notify.png',
+        'http://picdn.eta.pub/img/ui-sys-res.png',
+        'http://picdn.eta.pub/img/swagger.png',
+        'http://picdn.eta.pub/img/knife4j.png'
+      ]
     }
   }
 }
 </script>
 <style lang="scss" scoped>
+.img-box{
+  width: 500px;
+}
 .d2-page-cover {
   .logo {
     width: 40px;
