@@ -48,6 +48,17 @@ export const crudOptions = (vm) => {
           disabled () {
             return !vm.hasPermissions('sys:ureports:preview')
           }
+        },
+        {
+          thin: true,
+          text: '报表导出',
+          type: 'success',
+          size: 'mini',
+          emit: 'onExport',
+          icon: 'fa fa-file-text-o',
+          disabled () {
+            return !vm.hasPermissions('sys:ureports:export')
+          }
         }
       ]
     },

@@ -7,6 +7,7 @@
                 ref="d2Crud"
                 @onDesign="handleDesign"
                 @onPreview="handlePreview"
+                @onExport="handleExport"
                 v-bind="_crudProps"
                 v-on="_crudListeners">
           <div slot="header">
@@ -57,17 +58,19 @@ export default {
     },
     openDesigner () {
       const url = '//' + window.location.host + `${process.env.VUE_APP_API}/ureport/designer`
-      console.log('open -> ' + url)
       util.open(url)
     },
     handleDesign (event) {
       const url = '//' + window.location.host + `${process.env.VUE_APP_API}/ureport/designer?_u=${event.row.file}`
-      console.log('open -> ' + url)
       util.open(url)
     },
     handlePreview (event) {
       const url = '//' + window.location.host + `${process.env.VUE_APP_API}/ureport/preview?_u=${event.row.file}`
-      console.log('preview -> ' + url)
+      util.open(url)
+    },
+    handleExport (event) {
+      const token = util.cookies.get('token')
+      const url = '//' + window.location.host + `${process.env.VUE_APP_API}/sys/ur-files/export/file/${event.row.file}?x-api-token=${token}`
       util.open(url)
     }
   }
