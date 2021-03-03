@@ -1,9 +1,10 @@
 import constantRoutes, { frameInRoutes } from '@/router/routes'
 import layoutHeaderAside from '@/layout/header-aside'
-import frameContext from '@/views/system/frame-context'
+import frameContainer from '@/views/system/frame-context'
 import { menuHeader } from '@/menu'
 import router from '@/router'
 import { uniqueId } from 'lodash'
+import util from '@/libs/util.js'
 const StaticMenuHeader = [...menuHeader] // 静态菜单暂存，重新登录后，需要重新加载动态菜单与此处的静态菜单合并
 
 /**
@@ -28,8 +29,28 @@ function isEmpty (value) {
   return false
 }
 
-function isURL (s) {
-  return /^http[s]?:\/\/.*/.test(s)
+function resolveComponent (menu) {
+  let component = null
+  // 按钮不处理
+  if (menu.type !== '2') {
+    // 不为空判断是不是URL
+    if (!isEmpty(menu.component)) {
+      // 魔法值,兼容旧版
+      if (menu.component === 'layoutHeaderAside') {
+        component = layoutHeaderAside
+      } else if (util.str.isURL(menu.component)) {
+        component = frameContainer
+      } else {
+        component = () => import('@/business/modules' + menu.component)
+      }
+    } else {
+      // 一级菜单可以为空
+      if (menu.type === '1' && menu.parentId === '0') {
+        component = layoutHeaderAside
+      }
+    }
+  }
+  return component
 }
 
 /**
@@ -45,16 +66,8 @@ function formatRouter (parent, list) {
   }
   list.forEach((item) => {
     let newRouter = parent
-    if (item.type !== '2' && !isEmpty(item.component)) { // 如果是按钮 或者没有配置component，则不加入路由
-      let component = null
-      if (item.component === 'layoutHeaderAside') {
-        component = layoutHeaderAside
-      } else if (isURL(item.component)) {
-        // FIXME: refactor menu
-        component = frameContext
-      } else {
-        component = () => import('@/business/modules' + item.component)
-      }
+    const component = resolveComponent(item)
+    if (item.type !== '2' && component) {
       const children = parent.children
       newRouter = {
         path: item.path,
@@ -65,8 +78,8 @@ function formatRouter (parent, list) {
         meta: {
           title: item.title,
           auth: true,
-          cache: true,
-          frameUrl: component === frameContext ? item.component : null
+          cache: item.cache || true,
+          frameUrl: util.str.isURL(item.component) ? item.component : null
         }
       }
       children.push(newRouter)
