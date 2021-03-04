@@ -40,9 +40,12 @@ export function getObj (id) {
 
 export function countByCode (code, excludeId) {
   return request({
-    url: prefix + `/counter/code/${code}`,
+    url: prefix + '/counter/code',
     method: 'get',
-    params: excludeId === undefined ? {} : { excludeId: excludeId }
+    params: {
+      value: code,
+      excludeId: excludeId === undefined ? '' : excludeId
+    }
   })
 }
 

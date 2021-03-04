@@ -44,11 +44,15 @@ export function getObj (id) {
     method: 'get'
   })
 }
+
 export function countUsername (username, excludeId) {
   return request({
-    url: prefix + `/users/counter/username/${username}`,
+    url: prefix + '/users/counter/username',
     method: 'get',
-    params: excludeId === undefined ? {} : { excludeId: excludeId }
+    params: {
+      value: username,
+      excludeId: excludeId === undefined ? '' : excludeId
+    }
   })
 }
 

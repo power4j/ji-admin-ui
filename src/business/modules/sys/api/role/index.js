@@ -47,9 +47,12 @@ export function getAll () {
 
 export function countByCode (code, excludeId) {
   return request({
-    url: prefix + `/count/username/${code}`,
+    url: prefix + '/count/code',
     method: 'get',
-    params: excludeId === undefined ? {} : { excludeId: excludeId }
+    params: {
+      value: code,
+      excludeId: excludeId === undefined ? '' : excludeId
+    }
   })
 }
 

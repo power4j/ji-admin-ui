@@ -47,8 +47,11 @@ export function getByKey (key) {
 
 export function countByKey (key, excludeId) {
   return request({
-    url: prefix + `/counter/key/${key}`,
+    url: prefix + '/counter/key',
     method: 'get',
-    params: excludeId === undefined ? {} : { excludeId: excludeId }
+    params: {
+      value: key,
+      excludeId: excludeId === undefined ? '' : excludeId
+    }
   })
 }

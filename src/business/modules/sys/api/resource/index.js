@@ -52,3 +52,25 @@ export function getChildren (id) {
     method: 'get'
   })
 }
+
+export function countName (name, excludeId) {
+  return request({
+    url: prefix + '/counter/name',
+    method: 'get',
+    params: {
+      value: name,
+      excludeId: excludeId === undefined ? '' : excludeId
+    }
+  })
+}
+
+export function countPath (path, excludeId) {
+  return request({
+    url: prefix + '/counter/path',
+    method: 'get',
+    params: {
+      value: path,
+      excludeId: excludeId === undefined ? '' : excludeId
+    }
+  })
+}

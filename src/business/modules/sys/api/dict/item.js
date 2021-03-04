@@ -31,13 +31,13 @@ export function getObj (id) {
 }
 
 export function countByValue (dictId, itemValue, excludeId) {
-  const query = { dictId: dictId }
-  if (excludeId !== undefined) {
-    query.excludeId = excludeId
-  }
   return request({
-    url: prefix + `/counter/values/${itemValue}`,
+    url: prefix + '/counter/value',
     method: 'get',
-    params: query
+    params: {
+      value: itemValue,
+      dictId: dictId,
+      excludeId: excludeId === undefined ? '' : excludeId
+    }
   })
 }
