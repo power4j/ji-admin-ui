@@ -57,20 +57,20 @@ export default {
       return urFileApi.delFile(row.file)
     },
     openDesigner () {
-      const url = '//' + window.location.host + `${process.env.VUE_APP_API}/ureport/designer`
+      const url = '//' + window.location.host + `${process.env.VUE_APP_API}/ureport/designer?x-api-token=${util.cookies.get('token')}`
       util.open(url)
     },
     handleDesign (event) {
-      const url = '//' + window.location.host + `${process.env.VUE_APP_API}/ureport/designer?_u=${event.row.file}`
+      const url = '//' + window.location.host + `${process.env.VUE_APP_API}/ureport/designer?_u=${event.row.file}&x-api-token=${util.cookies.get('token')}`
       util.open(url)
     },
     handlePreview (event) {
-      const url = '//' + window.location.host + `${process.env.VUE_APP_API}/ureport/preview?_u=${event.row.file}`
+      const url = '//' + window.location.host + `${process.env.VUE_APP_API}/ureport/preview?_u=${event.row.file}&x-api-token=${util.cookies.get('token')}`
       util.open(url)
     },
     handleExport (event) {
       const token = util.cookies.get('token')
-      const url = '//' + window.location.host + `${process.env.VUE_APP_API}/sys/ur-files/export/file/${event.row.file}?x-api-token=${token}`
+      const url = '//' + window.location.host + `${process.env.VUE_APP_API}/sys/ur-files/export/file/${event.row.file}?x-api-token=${token}&x-api-token=${util.cookies.get('token')}`
       util.open(url)
     }
   }
