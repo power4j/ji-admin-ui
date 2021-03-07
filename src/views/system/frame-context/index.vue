@@ -15,9 +15,6 @@ export default {
     frameUrl () {
       return this.$route.meta.frameUrl
     }
-  },
-  created () {
-    console.log(JSON.stringify(this.$route))
   }
 }
 </script>

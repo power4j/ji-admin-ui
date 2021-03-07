@@ -37,6 +37,7 @@
 import { crudOptions } from './crud'
 import { d2CrudPlus } from 'd2-crud-plus'
 import util from '@/libs/util.js'
+import { mapActions, mapState } from 'vuex'
 import * as urFileApi from '../../api/ureport-file'
 export default {
   name: 'UrFile',
@@ -46,7 +47,15 @@ export default {
       cronPopover: false
     }
   },
+  computed: {
+    ...mapState('d2admin/page', [
+      'opened'
+    ])
+  },
   methods: {
+    ...mapActions('d2admin/page', [
+      'currentSet'
+    ]),
     getCrudOptions () {
       return crudOptions(this)
     },
@@ -57,16 +66,46 @@ export default {
       return urFileApi.delFile(row.file)
     },
     openDesigner () {
-      const url = '//' + window.location.host + `${process.env.VUE_APP_API}/ureport/designer?x-api-token=${util.cookies.get('token')}`
-      util.open(url)
+      this.openDesignerPage()
     },
     handleDesign (event) {
-      const url = '//' + window.location.host + `${process.env.VUE_APP_API}/ureport/designer?_u=${event.row.file}&x-api-token=${util.cookies.get('token')}`
-      util.open(url)
+      this.openDesignerPage(event.row.file)
+    },
+    openDesignerPage (file) {
+      const designerPage = this.opened.filter(item => item.name === 'ureport-designer')[0]
+      if (designerPage) {
+        let msg = '你已经打开了设计视图,是刷新设计视图？'
+        if (designerPage.params.file) {
+          msg = `你正在编辑【${designerPage.params.file}】,是刷新设计视图？`
+        }
+        this.$confirm(msg, '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$router.push({
+            name: 'ureport-designer',
+            params: {
+              file: file
+            }
+          })
+        })
+      } else {
+        this.$router.push({
+          name: 'ureport-designer',
+          params: {
+            file: ''
+          }
+        })
+      }
     },
     handlePreview (event) {
-      const url = '//' + window.location.host + `${process.env.VUE_APP_API}/ureport/preview?_u=${event.row.file}&x-api-token=${util.cookies.get('token')}`
-      util.open(url)
+      this.$router.push({
+        name: 'ureport-preview',
+        params: {
+          file: event.row.file
+        }
+      })
     },
     handleExport (event) {
       const token = util.cookies.get('token')

@@ -10,6 +10,7 @@ export default {
     versionShow () {
       util.log.capsule('ji-admin', `v${process.env.VUE_APP_VERSION}`)
       console.log('https://github.com/power4j/ji-boot')
+      console.log('https://github.com/power4j/ji-admin-ui')
       console.log('请不要吝啬您的 star，谢谢 ~')
     }
   }

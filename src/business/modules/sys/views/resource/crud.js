@@ -7,15 +7,15 @@ export const crudOptions = (vm) => {
     if (value) {
       if (!util.str.isURL(value) && !value.startsWith('/')) {
         callback(new Error('请输入URL(以"http[s]"开头)或者路径(以"/"开头)'))
-        return
+      } else {
+        resApi.countPath(value, vm.getEditForm().id).then(ret => {
+          if (ret.data > 0) {
+            callback(new Error(`${value} 不能使用`))
+          } else {
+            callback()
+          }
+        })
       }
-      resApi.countPath(value, vm.getEditForm().id).then(ret => {
-        if (ret.data > 0) {
-          callback(new Error(`${value} 不能使用`))
-        } else {
-          callback()
-        }
-      })
     } else {
       callback()
     }
@@ -24,6 +24,8 @@ export const crudOptions = (vm) => {
     if (value) {
       if (!util.str.isURL(value) && !value.startsWith('/')) {
         callback(new Error('请输入URL(以"http[s]"开头)或者路径(以"/"开头)'))
+      } else {
+        callback()
       }
     } else {
       callback()

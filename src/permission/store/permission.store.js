@@ -35,7 +35,7 @@ function resolveComponent (menu) {
   if (menu.type !== '2') {
     // 不为空判断是不是URL
     if (!isEmpty(menu.component)) {
-      // 魔法值,兼容旧版
+      // 魔法值
       if (menu.component === 'layoutHeaderAside') {
         component = layoutHeaderAside
       } else if (util.str.isURL(menu.component)) {
@@ -68,6 +68,7 @@ function formatRouter (parent, list) {
     let newRouter = parent
     const component = resolveComponent(item)
     if (item.type !== '2' && component) {
+      console.log('path', item.path, 'cache', item.cache)
       const children = parent.children
       newRouter = {
         path: item.path,
@@ -78,7 +79,7 @@ function formatRouter (parent, list) {
         meta: {
           title: item.title,
           auth: true,
-          cache: item.cache || true,
+          cache: item.cache,
           frameUrl: util.str.isURL(item.component) ? item.component : null
         }
       }

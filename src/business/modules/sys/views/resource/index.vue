@@ -73,7 +73,6 @@ export default {
       return resApi.getObj(row.id)
     },
     addAfter (row) {
-      console.log(JSON.stringify(row))
       this.doAfterRowChange(row)
       this.reloadNode(row.parentId)
     },
