@@ -1,5 +1,5 @@
 {
-  "name": "ji-amdin",
+  "name": "ji-admin",
   "version": "0.3.1",
   "scripts": {
     "serve": "vue-cli-service serve --open",
