@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import util from '@/libs/util.js'
 
 export default {
   name: 'ureport-designer',
@@ -16,12 +15,10 @@ export default {
   },
   computed: {
     designerUrl () {
-      let url = this.baseUrl + `?x-api-token=${util.cookies.get('token')}`
       if (this.$route.params.file) {
-        url = url + `&_u=${this.$route.params.file}`
+        return this.baseUrl + `?_u=${this.$route.params.file}`
       }
-      console.log(url)
-      return url
+      return this.baseUrl
     }
   }
 }

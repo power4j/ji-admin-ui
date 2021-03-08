@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import util from '@/libs/util.js'
 
 export default {
   name: 'ureport-preview',
@@ -16,9 +15,7 @@ export default {
   },
   computed: {
     previewUrl () {
-      const url = this.baseUrl + `?x-api-token=${util.cookies.get('token')}&_u=${this.$route.params.file}`
-      console.log(url)
-      return url
+      return this.baseUrl + `?_u=${this.$route.params.file}`
     }
   }
 }
