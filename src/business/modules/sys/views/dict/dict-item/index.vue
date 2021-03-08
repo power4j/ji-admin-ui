@@ -30,7 +30,7 @@ import { dict as dictApi, dictItem as dictItemApi } from '../../../api/dict'
  * 子表格当成一个普通组件来被父表格引用
  */
 export default {
-  name: 'DictItem',
+  name: 'sys-dict-item',
   mixins: [d2CrudPlus.crud],
   props: {
     dictCode: {

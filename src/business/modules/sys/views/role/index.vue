@@ -56,7 +56,7 @@ import { d2CrudPlus } from 'd2-crud-plus'
 import * as roleApi from '../../api/role'
 import * as userApi from '../../api/user'
 export default {
-  name: 'Role',
+  name: 'sys-role',
   mixins: [d2CrudPlus.crud],
   data () {
     return {

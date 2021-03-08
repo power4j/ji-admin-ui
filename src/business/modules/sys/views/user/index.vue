@@ -28,7 +28,7 @@ import { crudOptions } from './crud'
 import { d2CrudPlus } from 'd2-crud-plus'
 import * as userApi from '../../api/user'
 export default {
-  name: 'User',
+  name: 'sys-user',
   mixins: [d2CrudPlus.crud],
   data () {
     return {

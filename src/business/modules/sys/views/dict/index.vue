@@ -36,7 +36,7 @@ import { dict as dictApi } from '../../api/dict'
 import DictItem from './dict-item'
 
 export default {
-  name: 'Dict',
+  name: 'sys-dict',
   mixins: [d2CrudPlus.crud],
   components: { DictItem },
   data () {

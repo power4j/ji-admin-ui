@@ -28,7 +28,7 @@ import { crudOptions } from './crud'
 import { d2CrudPlus } from 'd2-crud-plus'
 import * as jobLogApi from '../../api/job-log'
 export default {
-  name: 'JobLog',
+  name: 'schedule-job-log',
   mixins: [d2CrudPlus.crud],
   data () {
     return {

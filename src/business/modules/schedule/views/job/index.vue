@@ -39,7 +39,7 @@ import { d2CrudPlus } from 'd2-crud-plus'
 import { cron } from 'vue-cron'
 import * as jobApi from '../../api/job'
 export default {
-  name: 'Job',
+  name: 'schedule-job',
   mixins: [d2CrudPlus.crud],
   components: { cron },
   data () {

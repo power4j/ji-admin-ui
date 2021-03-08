@@ -28,7 +28,7 @@ import { crudOptions } from './crud'
 import { d2CrudPlus } from 'd2-crud-plus'
 import * as paramApi from '../../api/param'
 export default {
-  name: 'Param',
+  name: 'sys-param',
   mixins: [d2CrudPlus.crud],
   data () {
     return {

@@ -29,7 +29,7 @@ import { d2CrudPlus } from 'd2-crud-plus'
 import * as resApi from '../../api/resource'
 
 export default {
-  name: 'Resource',
+  name: 'sys-resource',
   mixins: [d2CrudPlus.crud],
   data () {
     return {
