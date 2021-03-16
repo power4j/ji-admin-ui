@@ -47,7 +47,7 @@ export function getAll () {
 
 export function countByCode (code, excludeId) {
   return request({
-    url: prefix + '/count/code',
+    url: prefix + '/counter/code',
     method: 'get',
     params: {
       value: code,
