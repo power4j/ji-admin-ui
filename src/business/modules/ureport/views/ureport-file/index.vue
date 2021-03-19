@@ -94,7 +94,7 @@ export default {
         this.$router.push({
           name: 'ureport-designer',
           params: {
-            file: ''
+            file: file
           }
         })
       }

@@ -29,13 +29,13 @@ function registerRouterHook () {
 
     // 初始化动态路由
     try {
-      console.log('PM is enabled')
+      // console.log('PM is enabled')
       const menuTreeRes = await getPermissions()
-      console.log('获取权限数据成功：', menuTreeRes)
+      // console.log('获取权限数据成功：', menuTreeRes)
       const menuTree = menuTreeRes.data
       // 加载动态路由
       await store.dispatch('permission/generateRoutes', { menuTree })
-      console.log('PM load success')
+      // console.log('PM load success')
       next({ path: to.path, replace: true })
     } catch (e) {
       console.error('加载动态路由失败', e)

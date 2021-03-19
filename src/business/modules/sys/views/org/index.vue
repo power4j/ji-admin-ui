@@ -1,6 +1,6 @@
 <template>
   <d2-container :class="{'page-compact':crud.pageOptions.compact}">
-    <template slot="header">资源管理
+    <template slot="header">{{this.$route.meta.title}}
     </template>
     <d2-crud-x
       ref="d2Crud"
@@ -10,7 +10,7 @@
     >
 
       <div slot="header">
-        <el-button slot="header"  v-permission="'sys:resource:add'" size="mini" type="primary" @click="addRootRow"><i class="el-icon-plus"/> 新增</el-button>
+        <el-button slot="header"  v-permission="'sys:org:add'" size="mini" type="primary" @click="addRootRow"><i class="el-icon-plus"/> 新增</el-button>
 
         <crud-toolbar :search=null
                       :compact.sync="crud.pageOptions.compact"
@@ -26,10 +26,10 @@
 <script>
 import { crudOptions } from './crud'
 import { d2CrudPlus } from 'd2-crud-plus'
-import * as resApi from '../../api/resource'
+import * as orgApi from '../../api/org'
 
 export default {
-  name: 'sys-resource',
+  name: 'sys-org-list-view',
   mixins: [d2CrudPlus.crud],
   data () {
     return {
@@ -39,8 +39,8 @@ export default {
     getCrudOptions () {
       return crudOptions(this)
     },
-    pageRequest () {
-      return resApi.getChildren(0).then(ret => {
+    async pageRequest () {
+      return orgApi.getChildren(1).then(ret => {
         const list = ret.data
         // hack pageResponse
         ret.data = {
@@ -52,64 +52,53 @@ export default {
         return ret
       })
     },
-    clearResourceTreeDictCache () {
-      d2CrudPlus.util.dict.clear('sys_menu_tree')
+    clearOrgTreeDictCache () {
+      d2CrudPlus.util.dict.clear('sys_org_tree')
     },
     addRequest (row) {
-      this.clearResourceTreeDictCache()
-      return resApi.addObj(row)
+      this.clearOrgTreeDictCache()
+      return orgApi.addObj(row)
     },
     updateRequest (row) {
-      this.clearResourceTreeDictCache()
-      return resApi.updateObj(row).then(ret => {
+      this.clearOrgTreeDictCache()
+      return orgApi.updateObj(row).then(ret => {
         return ret
       })
     },
     delRequest (row) {
-      this.clearResourceTreeDictCache()
-      return resApi.delObj(row.id)
+      this.clearOrgTreeDictCache()
+      return orgApi.delObj(row.id)
     },
     infoRequest (row) {
-      return resApi.getObj(row.id)
+      return orgApi.getObj(row.id)
     },
     addAfter (row) {
       this.doAfterRowChange(row)
-      this.reloadNode(row.parentId)
+      // this.reloadNode(row.parentId)
     },
     delAfter (row) {
       this.doAfterRowChange(row)
-      this.reloadNode(row.parentId)
+      // this.reloadNode(row.parentId)
     },
     editAfter (row) {
       this.doAfterRowChange(row)
-      this.reloadNode(row.parentId)
+      // this.reloadNode(row.parentId)
     },
     handleAddSubResource ({ index, row }) {
       this.addRow({ parentId: row.id })
     },
     addRootRow () {
-      this.addRow({ parentId: '0' })
-    },
-    setUnload (row) {
-      // 设置节点为未加载状态
-      const data = this.getD2Crud().$refs.elTable.store.states.treeData
-      if (data != null) {
-        const item = data[row.parentId]
-        if (item != null) {
-          item.loaded = false
-          item.expanded = false
-        }
-      }
+      this.addRow({ parentId: '1' })
     },
     loadChildren (row, treeNode, resolve) {
-      resApi.getChildren(row.id).then(ret => { resolve(ret.data) })
+      orgApi.getChildren(row.id).then(ret => { resolve(ret.data) })
     },
     reloadNode (id) {
       // 局部刷新,触发加载节点
       // const { lazyTreeNodeMap, treeData } = this.getD2Crud().$refs.elTable.store.states
       // this.$set(lazyTreeNodeMap, id, [])
 
-      resApi.getChildren(id).then(ret => {
+      orgApi.getChildren(id).then(ret => {
         this.$set(this.getD2Crud().$refs.elTable.store.states.lazyTreeNodeMap, id, ret.data)
         /* this.$set(this.getD2Crud().$refs.elTable.store.states.lazyTreeNodeMap, id, ret.data)
         this.$set(treeData[id], 'loading', false)
@@ -122,7 +111,6 @@ export default {
         } */
       })
     }
-
   }
 }
 </script>

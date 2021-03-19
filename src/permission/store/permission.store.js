@@ -68,7 +68,6 @@ function formatRouter (parent, list) {
     let newRouter = parent
     const component = resolveComponent(item)
     if (item.type !== '2' && component) {
-      console.log('path', item.path, 'cache', item.cache)
       const children = parent.children
       newRouter = {
         path: item.path,
@@ -79,7 +78,7 @@ function formatRouter (parent, list) {
         meta: {
           title: item.title,
           auth: true,
-          cache: item.cache,
+          cache: item.cache || false,
           frameUrl: util.str.isURL(item.component) ? item.component : null
         }
       }

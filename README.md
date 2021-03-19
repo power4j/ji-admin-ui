@@ -4,6 +4,7 @@
 
 本项目实现了一个权限管理系统的最基础部分，适合开发中小型项目，由于功能简洁，可以很容易地进行定制， 变成你自己的`starter`脚手架。
 
+后端项目: https://github.com/power4j/ji-boot
 
 ## 功能
 
@@ -29,6 +30,15 @@
 ![ui-sys-res.png](docs/assets/img/testing/ui-sys-res.png)
 
 
+![rp-preview.png](docs/assets/img/testing/rp-preview.png)
+
+
+![rp-design.png ](docs/assets/img/testing/rp-design.png)
+
+
+![sys-org.png](docs/assets/img/testing/sys-org.png)
+
+
 ![knife4j.png](docs/assets/img/testing/knife4j.png)
 
 
@@ -39,6 +49,7 @@
 
 
 ![ding-err-notify.png](docs/assets/img/testing/ding-err-notify.png)
+
 
 ## Special Thanks
 

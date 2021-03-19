@@ -158,7 +158,7 @@ export const crudOptions = (vm) => {
       {
         title: '路由缓冲',
         key: 'cache',
-        type: 'dict-switch',
+        type: 'select',
         dict: { data: [{ value: true, label: '开启' }, { value: false, label: '关闭' }] },
         align: 'center',
         width: 120
@@ -185,7 +185,7 @@ export const crudOptions = (vm) => {
         form: {
           component: {
             props: {
-              placeholder: 'permission/resource'
+              placeholder: '/permission/resource'
             },
             span: 24,
             show: ({ key, value, form }) => {
