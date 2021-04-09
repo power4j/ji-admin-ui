@@ -2,7 +2,7 @@ import { roDict as dictApi } from '../../api/dict'
 import * as roleApi from '../../api/role'
 
 export const crudOptions = (vm) => {
-  const validateRoleNameame = (rule, value, callback) => {
+  const validateRoleCode = (rule, value, callback) => {
     if (value) {
       roleApi.countByCode(value, vm.getEditForm().id).then(ret => {
         if (ret.data > 0) {
@@ -66,11 +66,11 @@ export const crudOptions = (vm) => {
         show: false // 是否隐藏列
       },
       {
-        title: '角色代码',
+        title: '角色编码',
         key: 'code',
         search: { disabled: false, component: { props: { clearable: true } } }, // 开启查询
         form: {
-          rules: [{ required: true, message: '此项必填' }, { max: 20, message: '长度 20 个字符' }, { validator: validateRoleNameame }]
+          rules: [{ required: true, message: '此项必填' }, { max: 20, message: '长度 20 个字符' }, { validator: validateRoleCode }]
         },
         sortable: 'custom'
       },

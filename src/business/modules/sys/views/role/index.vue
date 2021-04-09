@@ -60,16 +60,12 @@ export default {
   mixins: [d2CrudPlus.crud],
   data () {
     return {
-      dsScopeData: [],
       treeData: [],
       checkedKeys: [],
-      checkedDsScope: [],
       menuIds: '',
-      list: [],
       listLoading: true,
       form: {},
       roleId: undefined,
-      rolesOptions: undefined,
       dialogPermissionVisible: false
     }
   },
