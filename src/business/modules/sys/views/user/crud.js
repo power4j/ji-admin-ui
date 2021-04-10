@@ -1,6 +1,8 @@
 import { mobileValidator } from 'el-phone-number-input'
 import { roDict as dictApi } from '../../api/dict'
 import * as userApi from '../../api/user'
+import * as positionApi from '../../api/position'
+import * as orgApi from '../../api/org'
 
 export const crudOptions = (vm) => {
   const validateUsername = (rule, value, callback) => {
@@ -103,6 +105,50 @@ export const crudOptions = (vm) => {
         form: {
           rules: [{ validator: mobileValidator, message: '手机号不正确' }]
         }
+      },
+      {
+        title: '岗位',
+        key: 'postId',
+        sortable: true,
+        minWidth: 100,
+        type: 'select',
+        dict: {
+          url: 'sys_position_list',
+          getData: (url, dict) => {
+            return positionApi.getAll().then(ret => ret.data.map(o => { return { ...o, value: o.id, label: o.name } }))
+          }
+        },
+        form: {
+          rules: [{ required: true, message: '请选岗位' }]
+        }
+      },
+      {
+        title: '所属部门',
+        key: 'orgId',
+        sortable: true,
+        type: 'tree-selector',
+        dict: {
+          isTree: true,
+          value: 'id',
+          label: 'name',
+          url: 'sys_org_tree',
+          getData: (url, dict) => {
+            return orgApi.getTree({ showRoot: true }).then(ret => { return ret.data })
+          }
+        },
+        form: {
+          component: {
+            props: {
+              multiple: false,
+              elProps: {
+                defaultExpandAll: true
+              },
+              dict: { cache: false }
+            }
+          },
+          rules: [{ required: true, message: '请选部门' }]
+        },
+        width: 220
       },
       {
         title: '邮箱',
